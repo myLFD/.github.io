@@ -73,6 +73,90 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-live-migration" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/01/live-migration/" class="article-date">
+  <time class="dt-published" datetime="2023-11-01T17:24:48.716Z" itemprop="datePublished">2023-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/01/live-migration/">A Survey on Mobility-Induced Service Migration in the Fog,Edge, and Related Computing Paradigms</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="A-Survey-on-Mobility-Induced-Service-Migration-in-the-Fog-Edge-and-Related-Computing-Paradigms阅读总结"><a href="#A-Survey-on-Mobility-Induced-Service-Migration-in-the-Fog-Edge-and-Related-Computing-Paradigms阅读总结" class="headerlink" title="A Survey on Mobility-Induced Service Migration in the Fog,Edge, and Related Computing Paradigms阅读总结"></a>A Survey on Mobility-Induced Service Migration in the Fog,Edge, and Related Computing Paradigms阅读总结</h1><h2 id="迁移方式"><a href="#迁移方式" class="headerlink" title="迁移方式"></a>迁移方式</h2><p><img src="/./images/live-migration-1.png" alt="Alt text"></p>
+<h3 id="statsless-无状态"><a href="#statsless-无状态" class="headerlink" title="statsless 无状态"></a>statsless 无状态</h3><p>无状态迁移与没有运行状态的无状态服务相关联，因此，迁移过程仅包括在目标节点重新部署服务</p>
+<h3 id="stateful-有状态"><a href="#stateful-有状态" class="headerlink" title="stateful 有状态"></a>stateful 有状态</h3><p>有状态迁移分为冷迁移和热迁移<br>冷迁移时，虚拟机会被暂停，然后转移到目的地，并在目的地恢复。在此期间，当前主机上的服务不可用。服务不可用的这段时期称为停机时间。<br>热迁移又分为预复制（pre-copy）、后复制(post-copy)和混合迁移(hybrid)</p>
+<p>1、推送阶段，在此期间内存页面被迭代推送到目标，同时虚拟机仍在源上运行。 “脏”页面，即自上次迭代以来修改过的页面，将在后续迭代中再次发送。<br>2、停止和复制阶段：源上的VM 停止。然后，剩余页面将复制到目标，虚拟机将在该目标重新启动。<br>3、拉取阶段：当虚拟机在目的地恢复执行时，访问尚未复制的页面时可能会出现页面错误。然后，在此阶段将从源节点拉出这些页面。</p>
+<p>pre-copy<br>在预复制阶段，Hypervisor 将所有内存页面从源复制到目标，同时 VM 仍在源上运行。如果某些内存页在预复制阶段发生变化（变得“脏”），它们将在几个“预复制轮次”中被一次又一次地复制(迭代拷贝)。通常，当剩余的脏页数量变得足够少以产生短暂的停止和复制阶段时，预复制阶段结束。（收敛速度）但是，如果虚拟机弄脏内存的速度快于重新复制到目标的速度，则预复制阶段将在设定的时间限制或最大预复制轮数后结束，直接开始下一个停止和复制阶段。</p>
+<p>post-copy<br>复制后 VM 迁移是通过在源处挂起 VM 来启动的。当 VM 挂起时，VM 执行状态的最小子集（CPU 状态、寄存器以及可选的不可分页内存）将传输到目标。然后 VM 将在目标处恢复。同时，源主动将 VM 的剩余内存页面推送到目标 - 这种活动称为预分页。在目标上，如果虚拟机尝试访问尚未传输的页面，则会生成页面错误。这些故障（称为网络故障）被捕获在目标处并重定向到源，源以故障页面进行响应。太多的网络故障会降低虚拟机内运行的应用程序的性能。因此，预分页可以通过主动推送最后一个故障附近的页面来动态调整页面传输顺序以适应网络故障。理想的预分页方案将掩盖大部分网络故障，尽管其性能取决于虚拟机工作负载的内存访问模式。<br>后复制通过网络将每个页面只发送一次，而如果页面在迁移过程中在源处反复变脏，则预复制可以多次传输同一页面。另一方面，预复制会在迁移期间保留源处 VM 的最新状态，而在后复制期间，VM 的状态会分布在源和目标之间。如果实时迁移过程中目标发生故障，预复制可以恢复虚拟机，而后复制则不能。</p>
+<p>预复制迁移执行推送阶段，然后执行停止和复制阶段，而后复制迁移则执行停止和复制阶段，然后执行拉取阶段</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://github.com/2023/11/01/live-migration/" data-id="clog26e5800012rz9eiahgznk" data-title="A Survey on Mobility-Induced Service Migration in the Fog,Edge, and Related Computing Paradigms" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Parallelizing Live Migration of Virtual Machines" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/26/Parallelizing%20Live%20Migration%20of%20Virtual%20Machines/" class="article-date">
+  <time class="dt-published" datetime="2023-10-26T17:37:14.302Z" itemprop="datePublished">2023-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/10/26/Parallelizing%20Live%20Migration%20of%20Virtual%20Machines/">Parallelizing Live Migration of Virtual Machines阅读笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Parallelizing-Live-Migration-of-Virtual-Machines阅读笔记"><a href="#Parallelizing-Live-Migration-of-Virtual-Machines阅读笔记" class="headerlink" title="Parallelizing Live Migration of Virtual Machines阅读笔记"></a>Parallelizing Live Migration of Virtual Machines阅读笔记</h1><h2 id="一篇2013年有关虚拟机并行动态调度的文章，出处上交的IPADS实验室"><a href="#一篇2013年有关虚拟机并行动态调度的文章，出处上交的IPADS实验室" class="headerlink" title="一篇2013年有关虚拟机并行动态调度的文章，出处上交的IPADS实验室"></a>一篇2013年有关虚拟机并行动态调度的文章，出处上交的IPADS实验室</h2><p>全文</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://github.com/2023/10/26/Parallelizing%20Live%20Migration%20of%20Virtual%20Machines/" data-id="clog26e5400002rz91hyv64ey" data-title="Parallelizing Live Migration of Virtual Machines阅读笔记" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-openstack冷迁移" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/10/23/openstack%E5%86%B7%E8%BF%81%E7%A7%BB/" class="article-date">
@@ -88,6 +172,7 @@
         <p>from openstack import connection<br>conn &#x3D; connection.Connection(<br>    auth_url&#x3D;’<a target="_blank" rel="noopener" href="http://controller:5000/v3">http://controller:5000/v3</a>‘,<br>    project_name&#x3D;’admin’,<br>    username&#x3D;’admin’,<br>    password&#x3D;’loongson’,<br>    user_domain_name&#x3D;’Default’,<br>    project_domain_name&#x3D;’Default’<br>)<br>servers &#x3D; conn.compute.servers()<br>for server in servers:<br>    print(server.name)</p>
 <h1 id="获取计算节点列表"><a href="#获取计算节点列表" class="headerlink" title="获取计算节点列表"></a>获取计算节点列表</h1><p>hypervisors &#x3D; conn.compute.hypervisors()<br>for hs in hypervisors:<br>    print(hs .hypervisor_hostname)</p>
 <p>hosts &#x3D; conn.compute.hosts()<br>for host in hosts:<br>    print(host.host_name)</p>
+<p>nova live-migration  [实例id]  [计算节点] </p>
 
       
     </div>
@@ -144,6 +229,10 @@
 <h2 id="7-计算节点发现"><a href="#7-计算节点发现" class="headerlink" title="7.计算节点发现"></a>7.计算节点发现</h2><p>所有计算节点部署完成后,登陆controller<br><code> nova-manage cell_v2 discover_hosts --verbose</code></p>
 <h2 id="8-安装卷服务CINDER（可选）"><a href="#8-安装卷服务CINDER（可选）" class="headerlink" title="8.安装卷服务CINDER（可选）"></a>8.安装卷服务CINDER（可选）</h2><p>在控制节点格式化一个lvm的盘sdb1, 如果不是sdb1, 需要修改&#x2F;root&#x2F;openstack-install&#x2F;openstack&#x2F;cinder.sh脚本对应内容<br>进入&#x2F;root&#x2F;openstack-instal&#x2F;openstack目录, 执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source variable.sh</span><br><span class="line">source openstack-rc</span><br><span class="line">./cinder.sh</span><br></pre></td></tr></table></figure>
+
+
+<p>sudo apt-get install -y git-email<br>sudo apt-get install -y libaio-dev libbluetooth-dev libcapstone-dev libbrlapi-dev libbz2-dev<br>sudo apt-get install -y libcap-ng-dev libcurl4-gnutls-dev libgtk-3-dev<br>sudo apt-get install -y libibverbs-dev libjpeg8-dev libncurses5-dev libnuma-dev<br>sudo apt-get install -y librbd-dev librdmacm-dev<br>sudo apt-get install -y libsasl2-dev libsdl2-dev libseccomp-dev libsnappy-dev libssh-dev<br>sudo apt-get install -y libvde-dev libvdeplug-dev libvte-2.91-dev libxen-dev liblzo2-dev<br>sudo apt-get install -y valgrind xfslibs-dev </p>
+
       
     </div>
     <footer class="article-footer">
@@ -311,7 +400,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a></li></ul>
     </div>
   </div>
 
@@ -324,6 +413,14 @@
       <ul>
         
           <li>
+            <a href="/2023/11/01/live-migration/">A Survey on Mobility-Induced Service Migration in the Fog,Edge, and Related Computing Paradigms</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/26/Parallelizing%20Live%20Migration%20of%20Virtual%20Machines/">Parallelizing Live Migration of Virtual Machines阅读笔记</a>
+          </li>
+        
+          <li>
             <a href="/2023/10/23/openstack%E5%86%B7%E8%BF%81%E7%A7%BB/">(no title)</a>
           </li>
         
@@ -333,10 +430,6 @@
         
           <li>
             <a href="/2023/09/18/markdown/">MarkDown</a>
-          </li>
-        
-          <li>
-            <a href="/2023/09/18/hello-world/">Hello World</a>
           </li>
         
       </ul>

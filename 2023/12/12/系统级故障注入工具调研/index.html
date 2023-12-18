@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="云计算模拟工具收集cloudsim介绍网址：http:&#x2F;&#x2F;cloudbus.org&#x2F;cloudsim&#x2F;github网址：https:&#x2F;&#x2F;github.com&#x2F;Cloudslab&#x2F;cloudsim">
+  <meta name="description" content="前言为了实现系统可靠性的分析研究，首要解决问题是实现系统的故障注入和性能监测，其中最先需要解决的是工具的调研和使用下列几种linux中常用的系统性能分析工具： systemtapsystemtap是利用Kprobe提供的API来实现动态地监控和跟踪运行中的linux内核的工具，经未严谨调研，所需的内核版本要求包括： 基本功能支持:    2.6.9+ - 基本的 Systemtap 工作需要用户空">
 <meta property="og:type" content="article">
-<meta property="og:title" content="blog of dz">
-<meta property="og:url" content="http://github.com/2023/11/09/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:title" content="系统级故障注入工具调研">
+<meta property="og:url" content="http://github.com/2023/12/12/%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/index.html">
 <meta property="og:site_name" content="blog of dz">
-<meta property="og:description" content="云计算模拟工具收集cloudsim介绍网址：http:&#x2F;&#x2F;cloudbus.org&#x2F;cloudsim&#x2F;github网址：https:&#x2F;&#x2F;github.com&#x2F;Cloudslab&#x2F;cloudsim">
+<meta property="og:description" content="前言为了实现系统可靠性的分析研究，首要解决问题是实现系统的故障注入和性能监测，其中最先需要解决的是工具的调研和使用下列几种linux中常用的系统性能分析工具： systemtapsystemtap是利用Kprobe提供的API来实现动态地监控和跟踪运行中的linux内核的工具，经未严谨调研，所需的内核版本要求包括： 基本功能支持:    2.6.9+ - 基本的 Systemtap 工作需要用户空">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-09T18:47:59.278Z">
-<meta property="article:modified_time" content="2023-11-09T18:49:19.058Z">
+<meta property="article:published_time" content="2023-12-12T08:29:45.261Z">
+<meta property="article:modified_time" content="2023-12-18T09:41:17.277Z">
 <meta property="article:author" content="dz">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://github.com/2023/11/09/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%85%B7/">
+<link rel="canonical" href="http://github.com/2023/12/12/%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title> | blog of dz</title>
+  <title>系统级故障注入工具调研 | blog of dz</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://github.com/2023/11/09/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%85%B7/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/2023/12/12/%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          系统级故障注入工具调研
         </h1>
 
         <div class="post-meta">
@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-11-10 02:47:59 / 修改时间：02:49:19" itemprop="dateCreated datePublished" datetime="2023-11-10T02:47:59+08:00">2023-11-10</time>
+              <time title="创建时间：2023-12-12 16:29:45" itemprop="dateCreated datePublished" datetime="2023-12-12T16:29:45+08:00">2023-12-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-18 17:41:17" itemprop="dateModified" datetime="2023-12-18T17:41:17+08:00">2023-12-18</time>
+              </span>
 
           
 
@@ -188,7 +194,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="云计算模拟工具收集"><a href="#云计算模拟工具收集" class="headerlink" title="云计算模拟工具收集"></a>云计算模拟工具收集</h1><p>cloudsim<br>介绍网址：<a target="_blank" rel="noopener" href="http://cloudbus.org/cloudsim/">http://cloudbus.org/cloudsim/</a><br>github网址：<a href="https://github.com/Cloudslab/cloudsim">https://github.com/Cloudslab/cloudsim</a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了实现系统可靠性的分析研究，首要解决问题是实现系统的故障注入和性能监测，其中最先需要解决的是工具的调研和使用<br>下列几种linux中常用的系统性能分析工具：</p>
+<h2 id="systemtap"><a href="#systemtap" class="headerlink" title="systemtap"></a>systemtap</h2><p>systemtap是利用Kprobe提供的API来实现动态地监控和跟踪运行中的linux内核的工具，经未严谨调研，所需的内核版本要求包括：</p>
+<p>基本功能支持:<br>    2.6.9+ - 基本的 Systemtap 工作需要<br>用户空间探针支持(uprobes):<br>    2.6.38+ - 用户函数的跟踪需要该版本以上<br>64位用户空间支持:<br>    2.6.25+ - 支持对应用程序堆栈的64位解析<br>函数跟踪支持(tracepoints):<br>    2.6.32+ - 跟踪内核函数的入口和出口<br>内核函数图支持:<br>    3.x - 提供内核函数调用关系图分析<br>优化的内存访问速度:<br>    4.1+ - 通过直接读写内存提升速度<br>eBPF框架集成:<br>    4.1+ - 可将eBPF程序用于自定义分析</p>
+<p>loongnix系统20.5和loongnix-server8.4内核版本均为4.19,高于所需内核版本要求。</p>
+<p>systemtap安装需要所需版本的内核信息包，尚未来得及调研，后续会更新<br>    kernel-debuginfo<br>    kernel-debuginfo-common<br>    kernel-devel</p>
+<p>systemtap官网：<a target="_blank" rel="noopener" href="https://sourceware.org/systemtap/index.html">https://sourceware.org/systemtap/index.html</a></p>
+<h2 id="ebpf"><a href="#ebpf" class="headerlink" title="ebpf"></a>ebpf</h2><p>最近几年在linux系统和性能分析领域较为活跃的主流工具是eBPF(extended Berkeley Packet Filter)。<br>ebpf是一个安全的内核虚拟机，可以用于自定义Tracing和性能分析的内核函数，提供了在特定时间点改变内核或用户空间状态的能力。同上，经不严谨调研：<br>最低基础运行版本:3.18<br>    3.18版本内核引入了对eBPF的基本支持<br>用户空间探针(uprobes): 4.1+<br>    uprobes需要4.1以上内核版本<br>BTF(BPF Type Format):5.1+<br>    BTF用于内核编写和分析的类型元数据,需要5.1以上<br>CO-RE(BPF Ring Buffer): 4.12+<br>    响应式输出缓存环需要4.12以上版本<br>内核函数回调(kprobes): 4.20+<br>    4.20引入bpf_get_stackid等功能以解决lockdep问题<br>内核增强函数(kfunc): 5.6+<br>    kfunc允许无锁定内核函数的bpf程序,需要5.6以上<br>BPF锁定: 4.20+<br>    bpf spin_lock&#x2F;unlock 需要4.20以后版本</p>
+<p>某些核心功能内核版本要求高于4.19,实际上由于ebpf技术演进较快，新功能基本都需要新内核的支持，建议采用5.11以上的内核版本。初步判定不适合课题使用，先调研于此。<br>附ebpf官网链接：<a target="_blank" rel="noopener" href="https://ebpf.io/zh-cn/">https://ebpf.io/zh-cn/</a></p>
+<p>更：所以 ebpf 实际上是类 Unix 系统上数据链路层的一种原始接口，他可以提供原始链路层包的收发和过滤。</p>
+<p>再说简单一点，他就是一个带有过滤功能的数据包收发接口，当然也是可以 dump 数据的。</p>
+<p>另外，ebpf 只能读取系统调用的参数和返回值，而不能修改任何寄存器（用户态或者内核态），因此它本身并不具有拦截功能。这一限制实际是其内部 verifier.c 模块的一个部分，真正的目的是为了保证内核本身的运行安全。因此在编写 BPF C 程序时，要非常小心的处理指针操作，避免一切的未定义行为（第5课的实验中会强调）；如果出现了未被 verifier.c 检测出的异常行为，也会在执行时被其他模块中断<br>故：可能不适合作为本次故障注入工具</p>
 
     </div>
 
@@ -204,13 +220,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/11/01/live-migration/" rel="prev" title="survey of live-migration 1">
-      <i class="fa fa-chevron-left"></i> survey of live-migration 1
+    <a href="/2023/12/03/%E4%BD%BF%E7%94%A8clonezilla%E8%BF%9B%E8%A1%8Cubuntu%E8%BF%81%E7%A7%BB/" rel="prev" title="使用clonezilla进行ubuntu迁移">
+      <i class="fa fa-chevron-left"></i> 使用clonezilla进行ubuntu迁移
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/11/28/git%E4%BD%BF%E7%94%A8%E5%87%A0%E5%88%99/" rel="next" title="git使用几则">
-      git使用几则 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -269,7 +282,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%91%E8%AE%A1%E7%AE%97%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">云计算模拟工具收集</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#systemtap"><span class="nav-number">1.1.</span> <span class="nav-text">systemtap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ebpf"><span class="nav-number">1.2.</span> <span class="nav-text">ebpf</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -283,7 +296,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

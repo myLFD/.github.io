@@ -145,6 +145,68 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://github.com/2024/04/09/android%E5%88%86%E5%8C%BA%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blog of dz">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/09/android%E5%88%86%E5%8C%BA%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-09 15:41:07 / 修改时间：17:23:57" itemprop="dateCreated datePublished" datetime="2024-04-09T15:41:07+08:00">2024-04-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Android-分区结构"><a href="#Android-分区结构" class="headerlink" title="Android 分区结构"></a>Android 分区结构</h1><p>Android 分区结构大致可以分为：non-A&#x2F;B分区（又可称为传统分区结构）、A&#x2F;B分区结构以及动态分区</p>
+<p>Android O之后引入A&#x2F;B分区结构 。A&#x2F;B分区结构，顾名思义，将系统分区分成了A和B两个槽(slot)，手机启动时会选择A槽或者B槽启动，运行过程中仅使用当前槽位的分区。一旦当前运行的槽出现问题，系统仍可以选择另一个槽进行启动，从而保证系统良好的可用性。</p>
+<p>Android Q(10.0)之后，系统支持动态分区。它将多个系统只读分区（包括system、product、vendor、odm或者其他厂商自定义分区）合并为一个super分区。物理分区只有super分区的概念，而没有system等分区。</p>
+<p> <img src="/images/android%E5%88%86%E5%8C%BA%E6%BC%94%E5%8F%98%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="android分区演变示意图"> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://github.com/2024/03/08/android12%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -170,7 +232,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-03-08 09:31:03 / 修改时间：17:22:05" itemprop="dateCreated datePublished" datetime="2024-03-08T09:31:03+08:00">2024-03-08</time>
+              <time title="创建时间：2024-03-08 09:31:03 / 修改时间：17:28:23" itemprop="dateCreated datePublished" datetime="2024-03-08T09:31:03+08:00">2024-03-08</time>
             </span>
 
           
@@ -250,7 +312,6 @@
 <p>set8:创建 &#x2F;first_stage_ramdisk目录作为根目录并切换，以降低权限</p>
 <p>set9:fstab和是否支持AVB2.0相关的处理</p>
 <p>set10:SetupSelinux</p>
-<p>原文出处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128652348">https://blog.csdn.net/q1210249579/article/details/128652348</a></p>
 <h4 id="2-4-SetupSelinux-char-argv"><a href="#2-4-SetupSelinux-char-argv" class="headerlink" title="2.4 SetupSelinux(char** argv)"></a>2.4 SetupSelinux(char** argv)</h4><p>$AOSP&#x2F;system&#x2F;core&#x2F;init&#x2F;selinux.cpp</p>
 <p>SeLinux 全称 Security-Enhanced Linux 即安全增强型 Linux，基于MAC机制的一种实现，它是一个 Linux  内核模块，也是 Linux 的一个安全子系统，这不是android特有的特性，而是由Linux衍生过来的SEAndroid。具体的代码细节不再关注，关注一下selinux修改权限的方法：</p>
 <p><strong>SELinux 分为 Permissive 和 Enforcing 两种模式</strong></p>
@@ -258,7 +319,6 @@
 <p>Enforcing 严格模式<br>在 Enforcing 模式中， SELinux 被启动，并强制执行所有的安全策略规则，代表 SELinux 运作中，违反 SELinux 规则的行为将被阻止并记录到日志中(avc)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell getenforce	//查看当前SELinux模式</span><br><span class="line">adb shell setenforce 0 //设置为Permissive宽松模式，临时关闭SELinux，机器重启以后还是会恢复的</span><br></pre></td></tr></table></figure>
 
-<p>原文出处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128637218">https://blog.csdn.net/q1210249579/article/details/128637218</a></p>
 <h4 id="2-5-SecondStageMain-int-argc-char-argv"><a href="#2-5-SecondStageMain-int-argc-char-argv" class="headerlink" title="2.5 SecondStageMain(int argc, char** argv)"></a>2.5 SecondStageMain(int argc, char** argv)</h4><p>$AOSP&#x2F;system&#x2F;core&#x2F;init&#x2F;init.cpp&#x2F;SecondStageMain(int argc, char** argv)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line">int SecondStageMain(int argc, char** argv) &#123;</span><br><span class="line">    if (REBOOT_BOOTLOADER_ON_PANIC) &#123;</span><br><span class="line">        // 针对产生异常的进程进行信号处理,确保子进程能重启，如果主进程pid=1发生异常则触发crash</span><br><span class="line">        // 已经在上个文章分析过该函数</span><br><span class="line">        InstallRebootSignalHandlers();</span><br><span class="line">    &#125;</span><br><span class="line"> 	...</span><br><span class="line">    // 初始化kernel log,所有的kernel log均输出在/dev/kmsg设备节点上</span><br><span class="line">    SetStdioToDevNull(argv);</span><br><span class="line">    InitKernelLogging(argv);</span><br><span class="line">    LOG(INFO) &lt;&lt; &quot;init second stage started!&quot;;</span><br><span class="line">    ...</span><br><span class="line">    // Init不应该因为依赖于任何其他进程而崩溃，因此我们忽略主进程的信号管道信息</span><br><span class="line">    // 但我们不想忽略子进程的SIGPIPE（信号管道），因此我们为信号处理程序设置了一个no op函数</span><br><span class="line">    // SIGPIPE信号产生的场景举例</span><br><span class="line">    // ① 初始时，C、S连接建立，若某一时刻，C端进程宕机或者被KILL而终止（终止的C端进程将会关闭打开的文件描述符，即向S端发送FIN段），S端收到FIN后，响应ACK</span><br><span class="line">    // ② 假设此时，S端仍然向C端发送数据：当第一次写数据后，S端将会收到RST分节； 当收到RST分节后，第二次写数据后，S端将收到SIGPIPE信号（S端进程被终止）</span><br><span class="line">    &#123;</span><br><span class="line">        struct sigaction action = &#123;.sa_flags = SA_RESTART&#125;;</span><br><span class="line">        action.sa_handler = [](int) &#123;&#125;;</span><br><span class="line">        // sigaction是一个函数，可以用来查询或设置信号处理方式</span><br><span class="line">        sigaction(SIGPIPE, &amp;action, nullptr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //  MIN_OOM_SCORE_ADJUST = -1000;</span><br><span class="line">    //  MAX_OOM_SCORE_ADJUST = 1000;</span><br><span class="line">    //  设置进程的优先级，例如APK优先级是AMS计算出来并下发到/proc/1/oom_score_adj</span><br><span class="line">    //  统一由init进程设置/proc/**/oom_score_adj为-1000优先级</span><br><span class="line">    if (auto result =</span><br><span class="line">                WriteFile(&quot;/proc/1/oom_score_adj&quot;, StringPrintf(&quot;%d&quot;, DEFAULT_OOM_SCORE_ADJUST));</span><br><span class="line">        !result.ok()) &#123;</span><br><span class="line">        LOG(ERROR) &lt;&lt; &quot;Unable to write &quot; &lt;&lt; DEFAULT_OOM_SCORE_ADJUST</span><br><span class="line">                   &lt;&lt; &quot; to /proc/1/oom_score_adj: &quot; &lt;&lt; result.error();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  	...</span><br><span class="line">    // 创建 /dev/.booting 文件，就是个标记，表示booting进行中</span><br><span class="line">    // is_booting()函数会依靠空文件&quot;.booting&quot;来判断是否进程处于初始化中，初始化结束后，这个文件会被删除</span><br><span class="line">    close(open(&quot;/dev/.booting&quot;, O_WRONLY | O_CREAT | O_CLOEXEC, 0000));</span><br><span class="line">    </span><br><span class="line">    // 当设备解锁时，允许adb root</span><br><span class="line">    // 如果设备unlocked（解锁了），则会修改selinux规则，放大用户权限,这一点在第一阶段已经完成了</span><br><span class="line">    // 并设置了INIT_FORCE_DEBUGGABLE环境变量，这里只是根据环境变量获取第一阶段的内容</span><br><span class="line">    const char* force_debuggable_env = getenv(&quot;INIT_FORCE_DEBUGGABLE&quot;);</span><br><span class="line">    bool load_debug_prop = false;</span><br><span class="line">    if (force_debuggable_env &amp;&amp; AvbHandle::IsDeviceUnlocked()) &#123;</span><br><span class="line">        load_debug_prop = &quot;true&quot;s == force_debuggable_env;</span><br><span class="line">    &#125;</span><br><span class="line">    unsetenv(&quot;INIT_FORCE_DEBUGGABLE&quot;);</span><br><span class="line">    </span><br><span class="line">    // 如果设备未unlock，则卸载关于debug版本的/debug_ramdisk</span><br><span class="line">    // 让属性值读取/ramdisk而不是/debug_ramdisk，因为非unlock,不需要debug ramdisk</span><br><span class="line">    if (!load_debug_prop) &#123;</span><br><span class="line">    	// setup 1</span><br><span class="line">        UmountDebugRamdisk();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 初始化属性服务</span><br><span class="line">    // 获取system/build.prop,vendor/build.prop,/odm/build.prop,/product/build.prop,等其他build.prop并加载到properties map结构中</span><br><span class="line">    // 然后会将该properties结构，通过MMAP映射到全局内存中，供所有进程调用，主要ro是只读，只能够写一次，即初始化时给的一次值</span><br><span class="line">    // 注意build.prop有优先级，product下的优先级最高，因为是map结构，针对key相同的属性值时，会覆盖</span><br><span class="line">    // setup 2</span><br><span class="line">    PropertyInit();</span><br><span class="line"></span><br><span class="line">    // Umount second stage resources after property service has read the .prop files.</span><br><span class="line">    // 在属性服务读取.prop文件后，将卸载/second_stage_resources，因为已经用不到了，已经将属性值加载到内存当中了</span><br><span class="line">    UmountSecondStageRes();</span><br><span class="line"></span><br><span class="line">    // Umount the debug ramdisk after property service has read the .prop files when it means to.</span><br><span class="line">    // 若是debug版本，已经获取了属性值过后，也将卸载/debug_ramdisk</span><br><span class="line">    if (load_debug_prop) &#123;</span><br><span class="line">        UmountDebugRamdisk();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 挂载第二阶段（该阶段）的文件系统,第一阶段已经挂载了很多基本的文件系统了以及重要的分区</span><br><span class="line">    // 挂载/apex：简单点说apex为了解决性能而产生的机制，APK可以通过内置升级，但系统升级可是个大问题</span><br><span class="line">    // setup 3</span><br><span class="line">    MountExtraFilesystems();</span><br><span class="line">	...</span><br><span class="line">    // 之前初始化了属性服务，这里将开始属性服务，其实它就是一个socket</span><br><span class="line">    // 创建socket,处理客户端发来的请求，决定是更新属性值还是新增属性值</span><br><span class="line">    // setup 4</span><br><span class="line">    StartPropertyService(&amp;property_fd);</span><br><span class="line">    ...</span><br><span class="line">    // 根据ro.vndk.version 版本号，将/system/vendor_overlay和/product/vendor_overlay挂载在vendor上</span><br><span class="line">    // 也就是会覆盖vendor分区内容</span><br><span class="line">    // setup 5</span><br><span class="line">    fs_mgr_vendor_overlay_mount_all();</span><br><span class="line">    // 根据ro.oem_unlock_supported属性值来决定是否可以对设备进行unlock（解锁）</span><br><span class="line">    // 若ro.oem_unlock_supported：「1」则代表 设备支持刷写unlock,若不支持该值为0</span><br><span class="line">    // 如果设备支持刷写解锁，ro.boot.verifiedbootstate则会为orange，根据orange状态，把androidboot.flash.locked设置为1</span><br><span class="line">    // 如果设备不支持刷新解锁，ro.boot.verifiedbootstate则会为green，根据orange状态，把androidboot.flash.locked设置为0</span><br><span class="line">    // androidboot.flash.locked在系统启动完成后会形成属性值</span><br><span class="line">    // （或 /firmware/android/flash.locked DT 属性）设置为“1”（如果已锁定）或“0”（如果已解锁）来指示锁定状态。</span><br><span class="line">    export_oem_lock_status();</span><br><span class="line">    // 持续监控/proc/mounts 节点(fopen(&quot;/proc/mounts&quot;, &quot;re&quot;)),主要是解析该文件</span><br><span class="line">    // 解析文件中每一行数据，获取挂载点，挂载分区，文件类型，权限等(空格分割/dev/block/dm-33 /mnt/pass_through/0/emulated ext4 rw)</span><br><span class="line">    // 将解析内容生成实体类追加到要挂载的mounts_中，主要就是对mounts文件解析，更新mounts_中的信息</span><br><span class="line">    // setup 6</span><br><span class="line">    MountHandler mount_handler(&amp;epoll);</span><br><span class="line">    ...</span><br><span class="line">    // 将根目录下所有的目录设置为全局共享</span><br><span class="line">    // 将根目录/&#123;分区&#125;类型设置为共享，以便默认情况下所有进程都可以看到任何装载事件（例如/data）</span><br><span class="line">    if (!SetupMountNamespaces()) &#123;</span><br><span class="line">        PLOG(FATAL) &lt;&lt; &quot;SetupMountNamespaces failed&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line">	// setup 7</span><br><span class="line">    // 创建ActionManager对象和ServiceList对象</span><br><span class="line">    ActionManager&amp; am = ActionManager::GetInstance();</span><br><span class="line">    ServiceList&amp; sm = ServiceList::GetInstance();</span><br><span class="line">    // 加载rc文件，保存到action manager和service list中</span><br><span class="line">    // rc文件中：action 使用 ActionParser，而 service 使用 ServiceParser 解析</span><br><span class="line">    // 主要解析rc中的：service，on,Import,包含了zygote.rc,路径：/system/bin/app_process64</span><br><span class="line">    // 在文件系统挂载的第一阶段，system/vendor分区已经成功挂载，而其它分区的挂载则通过rc来挂载</span><br><span class="line">    // 后面主要分析一下on early-init和on init和zygote</span><br><span class="line">    LoadBootScripts(am, sm);</span><br><span class="line">	...</span><br><span class="line">	// setup 8</span><br><span class="line">    // 构建action和触发器(on early-init)，放到event_queue，等待执行函数</span><br><span class="line">    am.QueueBuiltinAction(SetupCgroupsAction, &quot;SetupCgroups&quot;);</span><br><span class="line">    am.QueueBuiltinAction(SetKptrRestrictAction, &quot;SetKptrRestrict&quot;);</span><br><span class="line">    am.QueueBuiltinAction(TestPerfEventSelinuxAction, &quot;TestPerfEventSelinux&quot;);</span><br><span class="line">    am.QueueEventTrigger(&quot;early-init&quot;);</span><br><span class="line"></span><br><span class="line">    // Queue an action that waits for coldboot done so we know ueventd has set up all of /dev...</span><br><span class="line">    am.QueueBuiltinAction(wait_for_coldboot_done_action, &quot;wait_for_coldboot_done&quot;);</span><br><span class="line">    // ... so that we can start queuing up actions that require stuff from /dev.</span><br><span class="line">    am.QueueBuiltinAction(SetMmapRndBitsAction, &quot;SetMmapRndBits&quot;);</span><br><span class="line">    Keychords keychords;</span><br><span class="line">    am.QueueBuiltinAction(</span><br><span class="line">            [&amp;epoll, &amp;keychords](const BuiltinArguments&amp; args) -&gt; Result&lt;void&gt; &#123;</span><br><span class="line">                for (const auto&amp; svc : ServiceList::GetInstance()) &#123;</span><br><span class="line">                    keychords.Register(svc-&gt;keycodes());</span><br><span class="line">                &#125;</span><br><span class="line">                keychords.Start(&amp;epoll, HandleKeychord);</span><br><span class="line">                return &#123;&#125;;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;KeychordInit&quot;);</span><br><span class="line"></span><br><span class="line">    // Trigger all the boot actions to get us started.</span><br><span class="line">    // 构建action和触发器(on init)，放到event_queue，等待执行函数</span><br><span class="line">    am.QueueEventTrigger(&quot;init&quot;);</span><br><span class="line"></span><br><span class="line">    // Don&#x27;t mount filesystems or start core system services in charger mode.</span><br><span class="line">    // 如果是充电模式则不需要挂载文件系统和不要启动核心服务</span><br><span class="line">    std::string bootmode = GetProperty(&quot;ro.bootmode&quot;, &quot;&quot;);</span><br><span class="line">    if (bootmode == &quot;charger&quot;) &#123;</span><br><span class="line">        am.QueueEventTrigger(&quot;charger&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        am.QueueEventTrigger(&quot;late-init&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Run all property triggers based on current state of the properties.</span><br><span class="line">    // 运行所有属性触发器(action)，例如 on property</span><br><span class="line">    am.QueueBuiltinAction(queue_property_triggers_action, &quot;queue_property_triggers&quot;);</span><br><span class="line"></span><br><span class="line">    // Restore prio before main loop</span><br><span class="line">    // 设置进程优先级，主进程不能被销毁和退出，循环处理rc中的服务相关</span><br><span class="line">    setpriority(PRIO_PROCESS, 0, 0);</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        // By default, sleep until something happens.</span><br><span class="line">        auto epoll_timeout = std::optional&lt;std::chrono::milliseconds&gt;&#123;&#125;;</span><br><span class="line"></span><br><span class="line">        auto shutdown_command = shutdown_state.CheckShutdown();</span><br><span class="line">        if (shutdown_command) &#123;</span><br><span class="line">            LOG(INFO) &lt;&lt; &quot;Got shutdown_command &#x27;&quot; &lt;&lt; *shutdown_command</span><br><span class="line">                      &lt;&lt; &quot;&#x27; Calling HandlePowerctlMessage()&quot;;</span><br><span class="line">            HandlePowerctlMessage(*shutdown_command);</span><br><span class="line">            shutdown_state.set_do_shutdown(false);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (!(prop_waiter_state.MightBeWaiting() || Service::is_exec_service_running())) &#123;</span><br><span class="line">            // 执行队列中的action</span><br><span class="line">            // 队列中依次执行每个action中携带command对应的执行函数</span><br><span class="line">            am.ExecuteOneCommand();</span><br><span class="line">        &#125;</span><br><span class="line">        if (!IsShuttingDown()) &#123;</span><br><span class="line">            // 处理sm（ServiceList）中服务超时重启相关（init.rc中的service）</span><br><span class="line">            auto next_process_action_time = HandleProcessActions();</span><br><span class="line">            if (next_process_action_time) &#123;</span><br><span class="line">                epoll_timeout = std::chrono::ceil&lt;std::chrono::milliseconds&gt;(</span><br><span class="line">                        *next_process_action_time - boot_clock::now());</span><br><span class="line">                if (*epoll_timeout &lt; 0ms) epoll_timeout = 0ms;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -270,7 +330,6 @@
 <p>set6:将根目录下所有的目录设置为全局共享</p>
 <p>set7:创建ActionManager对象和ServiceList对象，加载并解析rc文件</p>
 <p>set8:构建action和触发器(on early-init)，放到event_queue，等待执行函数；构建action和触发器(on init)，放到event_queue，等待执行函数；设置init进程无限循环。其中，zygote进程就是解析rc文件中创建的，然后根据zygote（本质上就是一个socket），通过JNI调用到上层代码，再fork出systemServer.java。还有处理ServiceList中服务超时相关的逻辑。</p>
-<p>原文出处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128759108">https://blog.csdn.net/q1210249579/article/details/128759108</a></p>
 <h4 id="2-6-Zygote服务"><a href="#2-6-Zygote服务" class="headerlink" title="2.6 Zygote服务"></a>2.6 Zygote服务</h4><p>在init.rc文件中会执行<code>class_start main</code>来启动zygote。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 启动zygote</span><br><span class="line">on nonencrypted</span><br><span class="line">    class_start main</span><br><span class="line">    class_start late_start</span><br></pre></td></tr></table></figure>
 
@@ -287,6 +346,12 @@
 
 <p>以上的代码主要就是初始化了JNI（c++与Java交互）功能并创建并启动了VM虚拟机，通过反射的方式去启动ZygoteInit.java的main方法，并将args参数（包含了是否启动SystemServer的参数）传递过去。</p>
 <p>后续zygoteinit以及loop设置，fork出子应用程序进程等不再关注。</p>
+<p>参考资料：</p>
+<p>《深入解析Android 5.0系统 (刘超) 》</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128652348">https://blog.csdn.net/q1210249579/article/details/128652348</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128637218">https://blog.csdn.net/q1210249579/article/details/128637218</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128759108">https://blog.csdn.net/q1210249579/article/details/128759108</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q1210249579/article/details/128782204">https://blog.csdn.net/q1210249579/article/details/128782204</a></p>
 
       
     </div>
@@ -337,7 +402,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-06 20:35:17" itemprop="dateModified" datetime="2024-03-06T20:35:17+08:00">2024-03-06</time>
+                <time title="修改时间：2024-03-11 09:55:49" itemprop="dateModified" datetime="2024-03-11T09:55:49+08:00">2024-03-11</time>
               </span>
 
           
@@ -409,6 +474,7 @@
 <p>1.最初安装应用时不进行任何 AOT 编译。应用前几次运行时，系统会对其进行解译，并对经常执行的方法进行 JIT 编译。</p>
 <p>2.当设备闲置和充电时，编译守护程序会运行，以便根据在应用前几次运行期间生成的配置文件对常用代码进行 AOT 编译。</p>
 <p>3.下一次重新启动应用时将会使用配置文件引导型代码，并避免在运行时对已经过编译的方法进行 JIT 编译。在应用后续运行期间经过 JIT 编译的方法将会添加到配置文件中，然后编译守护程序将会对这些方法进行 AOT 编译。</p>
+<p>附：部分性能分析工具oprofile</p>
 
       
     </div>
@@ -922,109 +988,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://github.com/2023/09/18/markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="dz">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blog of dz">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/18/markdown/" class="post-title-link" itemprop="url">MarkDown</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-18 16:59:06 / 修改时间：19:58:40" itemprop="dateCreated datePublished" datetime="2023-09-18T16:59:06+08:00">2023-09-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="MarkDown-学习记录"><a href="#MarkDown-学习记录" class="headerlink" title="MarkDown 学习记录"></a>MarkDown 学习记录</h1><h5 id="markdown官方教程链接"><a href="#markdown官方教程链接" class="headerlink" title="markdown官方教程链接"></a><a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/">markdown官方教程链接</a></h5><h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h2><p>使用#表示标题，#的数量代表标题的级别  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h3 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h3><p>可在标题文本的下一行使用多个&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;或者——-来分隔标题(不建议使用)<br>为了兼容不同MarkDown处理程序，#后需要加空格</p>
-<h2 id="2-换行-段落"><a href="#2-换行-段落" class="headerlink" title="2.换行&amp;段落"></a>2.换行&amp;段落</h2><p>换行：两个或多个空格回车（教程所述），实测直接回车即可<br>段落：空白行分割</p>
-<h2 id="3-加粗-斜体"><a href="#3-加粗-斜体" class="headerlink" title="3.加粗&amp;斜体"></a>3.加粗&amp;斜体</h2><p>使用两个星号<em>（建议）或者下划线_可以添加粗体，其中</em>可以对单词的一部分使用，注意不带空格</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**bold stick**</span><br><span class="line">bold __stick__</span><br><span class="line">bold s**t**ick</span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><strong>bold stick</strong><br>bold <strong>stick</strong><br>bold s<strong>t</strong>ick</p>
-<p>使用一个星号*（建议）或者下划线_可以添加斜体，方案通上</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*bold stick*</span><br><span class="line">bold _stick_</span><br><span class="line">bold s*t*ick</span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><em>bold stick</em><br>bold <em>stick</em><br>bold s<em>t</em>ick</p>
-<p>使用三个星星或下划线可以又粗又斜（狗头power）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">***bold stick***</span><br><span class="line">bold ___stick___</span><br><span class="line">bold s***t***ick</span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><em><strong>bold stick</strong></em><br>bold <em><strong>stick</strong></em><br>bold s<em><strong>t</strong></em>ick</p>
-<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><p>块引用：在段落前添加&gt;符号即可，多个段落间用&gt;作分割，嵌套&gt;&gt;，原理同#，下面偷懒使用官方例子</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; Dorothy followed her through many of the beautiful rooms in her castle.</span><br><span class="line">&gt;</span><br><span class="line">&gt;&gt; The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</span><br><span class="line">&gt; #### The quarterly results look great!</span><br><span class="line">&gt;</span><br><span class="line">&gt; - Revenue was off the chart.</span><br><span class="line">&gt; - Profits were higher than ever.</span><br><span class="line">&gt;</span><br><span class="line">&gt;  *Everything* is going according to **plan**.</span><br></pre></td></tr></table></figure>
-<p>效果如下：</p>
-<blockquote>
-<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
-<blockquote>
-<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
-</blockquote>
-<h4 id="The-quarterly-results-look-great"><a href="#The-quarterly-results-look-great" class="headerlink" title="The quarterly results look great!"></a>The quarterly results look great!</h4><ul>
-<li>Revenue was off the chart.</li>
-<li>Profits were higher than ever.</li>
-</ul>
-<p> <em>Everything</em> is going according to <strong>plan</strong>.</p>
-</blockquote>
-<h2 id="5-列表"><a href="#5-列表" class="headerlink" title="5.列表"></a>5.列表</h2><p>有序：列表项最前面添加数字+.<br>无序：列表项最前面添加破折号（-）、星号（*）、加号（+），尽量使用同一种符号</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 第一行</span><br><span class="line">- 第二行</span><br><span class="line">- 第三行</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一行</li>
-<li>第二行</li>
-<li>第三行</li>
-</ul>
-<h2 id="6-代码"><a href="#6-代码" class="headerlink" title="6.代码"></a>6.代码</h2><p>单词短语使用&#96;或者&#96;&#96;，代码段需要缩进一个tab或者4个空格，或者可以围栏式代码块使用&#96;&#96;&#96;，创建不用缩进的代码块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">`beijing`</span><br><span class="line">``where is `beijing` ``</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>beijing</code><br><code>where is `beijing` </code></p>
-<h2 id="7-链接-网址-email-图片"><a href="#7-链接-网址-email-图片" class="headerlink" title="7.链接-网址&amp;email&amp;图片"></a>7.链接-网址&amp;email&amp;图片</h2><p>教程直接用：<code>[超链接显示名](超链接地址 &quot;超链接title&quot;)</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是dz的博客 [blog of dz](https://mylfd.github.io &quot;最丢人的个人博客&quot;)。</span><br></pre></td></tr></table></figure>
-<p>效果如下：<br>这是dz的博客 <a target="_blank" rel="noopener" href="https://mylfd.github.io/" title="最丢人的个人博客">blog of dz</a>。</p>
-<p>尖括号可以把url和email变成链接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;https://mylfd.github.io&gt;</span><br><span class="line">&lt;fake@example.com&gt; </span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><a target="_blank" rel="noopener" href="https://mylfd.github.io/">https://mylfd.github.io</a><br><a href="mailto:&#102;&#x61;&#x6b;&#101;&#x40;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#102;&#x61;&#x6b;&#101;&#x40;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a> </p>
-<p>要添加图像，请使用感叹号 (!), 然后在方括号增加替代文本，图片链接放在圆括号里，括号里的链接后可以增加一个可选的图片标题文本<br>语法代码：<code>![图片alt](图片链接 &quot;图片title&quot;)</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1094,7 +1057,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-04-09 15:41:07 / 修改时间：17:23:57" itemprop="dateCreated datePublished" datetime="2024-04-09T15:41:07+08:00">2024-04-09</time>
+              <time title="创建时间：2024-04-09 15:41:07 / 修改时间：19:31:16" itemprop="dateCreated datePublished" datetime="2024-04-09T15:41:07+08:00">2024-04-09</time>
             </span>
 
           
@@ -188,6 +188,65 @@
 <p>Android O之后引入A&#x2F;B分区结构 。A&#x2F;B分区结构，顾名思义，将系统分区分成了A和B两个槽(slot)，手机启动时会选择A槽或者B槽启动，运行过程中仅使用当前槽位的分区。一旦当前运行的槽出现问题，系统仍可以选择另一个槽进行启动，从而保证系统良好的可用性。</p>
 <p>Android Q(10.0)之后，系统支持动态分区。它将多个系统只读分区（包括system、product、vendor、odm或者其他厂商自定义分区）合并为一个super分区。物理分区只有super分区的概念，而没有system等分区。</p>
 <p> <img src="/images/android%E5%88%86%E5%8C%BA%E6%BC%94%E5%8F%98%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="android分区演变示意图"> </p>
+<table>
+<thead>
+<tr>
+<th>non-A&#x2F;B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bootloader：设备启动后，会先进入bootloader程序，这里会通过判断开机时的按键组合（也会有一些其他判断条件，暂不赘述）选择启动到哪种模式，这里主要有Android系统、recovery模式、fastboot模式等。</td>
+</tr>
+<tr>
+<td>boot：包含有Android系统的kernel和ramdisk。如果bootloader选择启动Android系统，则会引导启动此分区的kernel并加载ramdisk，完成内核启动。</td>
+</tr>
+<tr>
+<td>system：包含有Android系统的可执行程序、库、系统服务和app等。内核启动后，会运行第一个用户态进程init，其会依据init.rc文件中的规则启动Android系统组件，这些系统组件就在system分区中。将Android系统组件启动完成后，最后会启动系统app —— launcher桌面，至此完成Android系统启动。</td>
+</tr>
+<tr>
+<td>vendor：包含有厂商私有的可执行程序、库、系统服务和app等。可以将此分区看做是system分区的补充，厂商定制ROM的一些功能都可以放在此分区。</td>
+</tr>
+<tr>
+<td>userdata：用户存储空间。一般新买来的手机此分区几乎是空的，用户安装的app以及用户数据都是存放在此分区中。用户通过系统文件管理器访问到的手机存储（sdcard）即此分区的一部分，是通过fuse或sdcardfs这类用户态文件系统实现的一块特殊存储空间。</td>
+</tr>
+<tr>
+<td>recovery：包含recovery系统的kernel和ramdisk。如果bootloader选择启动recovery模式，则会引导启动此分区的kernel并加载ramdisk，并启动其中的init继而启动recovery程序，至此可以操作recovery模式功能（主要包括OTA升级、双清等）。</td>
+</tr>
+<tr>
+<td>cache：主要用于缓存系统升级OTA包等。双清就是指对userdata分区和cache分区的清理。</td>
+</tr>
+<tr>
+<td>misc：主要用于Android系统和bootloader通信，使Android系统能够重启进入recovery系统并执行相应操作。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>A&#x2F;B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bootloader：功能同non-A&#x2F;B的bootloader，只是此处会根据A&#x2F;B槽的bootable、successful、active等标识来选择启动哪个槽。根据不同厂商的实现，可以是唯一的不区分A&#x2F;B的bootloader，也可以自定义，例如高通的实现bootloader是由唯一的pbl（此分区无法擦写）来选择A&#x2F;B槽，启动xbl_a&#x2F;xbl_b，再启动abl_a&#x2F;abl_b。</td>
+</tr>
+<tr>
+<td>boot_a&#x2F;boot_b：包含kernel和recovery的ramdisk。recovery打包在boot分区中，则不再需要recovery分区。并且recovery系统也不再负责OTA升级（由Android系统中update_engine服务负责），仅负责双清等其他操作。</td>
+</tr>
+<tr>
+<td>system_a&#x2F;system_b：功能同non-A&#x2F;B的system分区，只是区分了A和B两个槽。</td>
+</tr>
+<tr>
+<td>vendor_a&#x2F;vendor_b：功能同non-A&#x2F;B的vendor分区，只是区分了A和B两个槽。</td>
+</tr>
+<tr>
+<td>userdata：功能同non-A&#x2F;B的userdata，并且用户数据仅存储一份，不区分A&#x2F;B。</td>
+</tr>
+<tr>
+<td>misc：功能同non-A&#x2F;B的misc，不区分A&#x2F;B。</td>
+</tr>
+<tr>
+<td>persist：用来存储一些持久化数据，不会随着双清、OTA等操作被清除。不区分A&#x2F;B。</td>
+</tr>
+</tbody></table>
 
       
     </div>

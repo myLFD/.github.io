@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1.硬件准备3A5000，Radeon 520OEM显卡 1234567891011loongson@loongson-pc:~$ lspci -v -s 06:00.006:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD&#x2F;ATI] Oland [Radeon HD 8570 &#x2F; R5 430 OEM &#x2F; R7 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blog of dz">
+<meta property="og:url" content="http://github.com/2024/06/05/%E6%9C%89%E5%85%B3%E5%9C%A83A5000%E4%B8%8A%E5%90%AF%E5%8A%A8android%E5%9B%BE%E5%BD%A2%E6%A0%88%E7%9A%84%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="blog of dz">
+<meta property="og:description" content="1.硬件准备3A5000，Radeon 520OEM显卡 1234567891011loongson@loongson-pc:~$ lspci -v -s 06:00.006:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD&#x2F;ATI] Oland [Radeon HD 8570 &#x2F; R5 430 OEM &#x2F; R7 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-05T13:25:45.485Z">
+<meta property="article:modified_time" content="2024-06-05T14:16:25.789Z">
+<meta property="article:author" content="dz">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://github.com/2024/06/05/%E6%9C%89%E5%85%B3%E5%9C%A83A5000%E4%B8%8A%E5%90%AF%E5%8A%A8android%E5%9B%BE%E5%BD%A2%E6%A0%88%E7%9A%84%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | blog of dz</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blog of dz</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://github.com/2024/06/05/%E6%9C%89%E5%85%B3%E5%9C%A83A5000%E4%B8%8A%E5%90%AF%E5%8A%A8android%E5%9B%BE%E5%BD%A2%E6%A0%88%E7%9A%84%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blog of dz">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-05 21:25:45 / 修改时间：22:16:25" itemprop="dateCreated datePublished" datetime="2024-06-05T21:25:45+08:00">2024-06-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-硬件准备"><a href="#1-硬件准备" class="headerlink" title="1.硬件准备"></a>1.硬件准备</h1><p>3A5000，Radeon 520OEM显卡</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">loongson@loongson-pc:~$ lspci -v -s 06:00.0</span><br><span class="line">06:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Oland [Radeon HD 8570 / R5 430 OEM / R7 240/340 / Radeon 520 OEM] (rev 87) (prog-if 00 [VGA controller])</span><br><span class="line">        Subsystem: Bitland(ShenZhen) Information Technology Co., Ltd. Radeon 520 OEM</span><br><span class="line">        Flags: bus master, fast devsel, latency 0, IRQ 48, NUMA node 0</span><br><span class="line">        Memory at e0030000000 (64-bit, prefetchable) [size=256M]</span><br><span class="line">        Memory at e0041000000 (64-bit, non-prefetchable) [size=256K]</span><br><span class="line">        I/O ports at 4000 [size=256]</span><br><span class="line">        Expansion ROM at e0041040000 [disabled] [size=128K]</span><br><span class="line">        Capabilities: &lt;access denied&gt;</span><br><span class="line">        Kernel driver in use: radeon</span><br><span class="line">        Kernel modules: radeon, amdgpu</span><br></pre></td></tr></table></figure>
+<h1 id="2-分区格式"><a href="#2-分区格式" class="headerlink" title="2.分区格式"></a>2.分区格式</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">loongson@loongson-pc:~$ sudo gdisk</span><br><span class="line">GPT fdisk (gdisk) version 1.0.3</span><br><span class="line"></span><br><span class="line">Type device filename, or press &lt;Enter&gt; to exit: /dev/sda</span><br><span class="line">Partition table scan:</span><br><span class="line">  MBR: protective</span><br><span class="line">  BSD: not present</span><br><span class="line">  APM: not present</span><br><span class="line">  GPT: present</span><br><span class="line"></span><br><span class="line">Found valid GPT with protective MBR; using GPT.</span><br><span class="line"></span><br><span class="line">Command (? for help): p</span><br><span class="line">Disk /dev/sda: 500118192 sectors, 238.5 GiB</span><br><span class="line">Model: YMTC SC001-256GB</span><br><span class="line">Sector size (logical/physical): 512/512 bytes</span><br><span class="line">Disk identifier (GUID): D647FC08-8976-4385-A183-BB1F67ACB5DA</span><br><span class="line">Partition table holds up to 128 entries</span><br><span class="line">Main partition table begins at sector 2 and ends at sector 33</span><br><span class="line">First usable sector is 34, last usable sector is 500118158</span><br><span class="line">Partitions will be aligned on 2-sector boundaries</span><br><span class="line">Total free space is 146565775 sectors (69.9 GiB)</span><br><span class="line"></span><br><span class="line">Number  Start (sector)    End (sector)  Size       Code  Name</span><br><span class="line">   1              34          616447   301.0 MiB   0700  </span><br><span class="line">   2          616448         1230847   300.0 MiB   8300  </span><br><span class="line">   3         1230848       282249215   134.0 GiB   8300  </span><br><span class="line">   4       282249216       315803647   16.0 GiB    8200  </span><br><span class="line">   5       315803648       336775167   10.0 GiB    8300  super</span><br><span class="line">   6       336775168       345163775   4.0 GiB     8300  data</span><br><span class="line">   7       345163776       349358079   2.0 GiB     8300  cache</span><br><span class="line">   8       349358080       351455231   1024.0 MiB  8300  metadata</span><br><span class="line">   9       351455232       353552383   1024.0 MiB  8300  boot</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，goldfish中的fstab.ranchu的分区需要与上述分区一致</p>
+<h1 id="3-启动参数"><a href="#3-启动参数" class="headerlink" title="3.启动参数"></a>3.启动参数</h1><p>menuentry “android”{<br>        linux (hd0,gpt9)&#x2F;vmlinuz.efi console&#x3D;ttyS0,115200 norandmaps earlycon enforcing&#x3D;0 init&#x3D;&#x2F;init rw rootfstype&#x3D;cpio androidboot.selinux&#x3D;permissive androidboot.hardware&#x3D;ranchu loglevel&#x3D;1 androidboot.boot_devices&#x3D;pci0000:00&#x2F;0000:00:08.0 printk.devkmsg&#x3D;on androidboot.verifiedbootstate&#x3D;orange<br>        boot<br>}<br>boot_devices需与&#x2F;dev&#x2F;sda所在的pci地址保持一致</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">loongson@loongson-pc:/sys/block$ realpath sda</span><br><span class="line">/sys/devices/pci0000:00/0000:00:08.0/ata1/host0/target0:0:0/0:0:0:0/block/sda</span><br></pre></td></tr></table></figure>
+
+<p>内核可使用android_qemu_env下的vmlinuz.efi</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/05/21/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A42-bash/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">1.硬件准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%88%86%E5%8C%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">2.分区格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">3.启动参数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">dz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
